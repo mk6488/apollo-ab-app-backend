@@ -1,0 +1,107 @@
+query LOGIN_USER($username: String!, $password: String!) {
+  loginUser(username: $username, password: $password) {
+    user {
+      id
+      firstName
+      lastName
+      username
+      email
+      group
+      avatarImage
+    }
+    token
+  }
+}
+
+query AUTH_USER {
+  authUser {
+    id
+    firstName
+    lastName
+    username
+    group
+    email
+    avatarImage
+  }
+}
+
+query ALL_USERS {
+  allUsers {
+    id
+    firstName
+    lastName
+    username
+    group
+    email
+    avatarImage
+  }
+}
+
+query GET_USERS_WITH_PAGINATION {
+  getUsersWithPagination(page: 1, limit: 10) {
+    users {
+      firstName
+      lastName
+      username
+      group
+      email
+      avatarImage
+    }
+    paginator {
+      hasNextPage
+      hasPrevPage
+      next
+      prev
+      slNo
+      count
+      pageCount
+      perPage
+      currentPage
+    }
+  }
+}
+
+query GET_USER_BY_ID($id: ID!) {
+  getUserById(id: $id) {
+    id
+    firstName
+    lastName
+    username
+    email
+    group
+    avatarImage
+  }
+}
+
+mutation REGISTER_USER(
+  $username: String!
+  $firstName: String!
+  $lastName: String!
+  $email: String!
+  $group: String!
+  $password: String!
+  $avatarImage: String
+) {
+  registerUser(
+    newUser: {
+      username: $username
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      group: $group
+      password: $password
+      avatarImage: $avatarImage
+    }
+  ) {
+    token
+    user {
+      id
+      firstName
+      lastName
+      username
+      email
+      group
+      avatarImage
+    }
+  }
+}

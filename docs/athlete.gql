@@ -1,0 +1,115 @@
+query ALL_ATHLETES {
+  allAthletes {
+    id
+    firstName
+    lastName
+    squad
+    weight
+    current
+    doe
+    dob
+    author {
+      username
+    }
+  }
+}
+
+query GET_ATHLETE_BY_ID($id: ID!) {
+  getAthleteById(id: $id) {
+    id
+    firstName
+    lastName
+    squad
+    weight
+    current
+    doe
+    dob
+    author {
+      username
+    }
+  }
+}
+
+query GET_ATHLETE_WITH_PAGINATION {
+  getAthletesWithPagination(page: 1, limit: 5) {
+    athletes {
+      id
+      firstName
+      lastName
+      squad
+      weight
+      current
+      doe
+      dob
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+query GET_MY_ATHLETE_WITH_PAGINATION {
+  getMyAthletesWithPagination(page: 1, limit: 5) {
+    athletes {
+      id
+      firstName
+      lastName
+      squad
+      weight
+      current
+      doe
+      dob
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+mutation CREATE_ATHLETE($athleteId: ID!, $newAthlete: AthleteInput!) {
+  createAthlete(athleteId: $athleteId, newAthlete: $newAthlete) {
+    id
+    firstName
+    lastName
+    squad
+    weight
+    current
+    doe
+    dob
+  }
+}
+
+mutation UPDATE_ATHLETE(
+  $id: ID!
+  $athleteId: ID!
+  $updatedAthlete: AthleteInput!
+) {
+  updateAthlete(
+    id: $id
+    athleteId: $athleteId
+    updatedAthlete: $updatedAthlete
+  ) {
+    id
+    firstName
+    lastName
+    squad
+    weight
+    current
+    doe
+    dob
+  }
+}
+
+mutation DELETE_ATHLETE($id: ID!) {
+  deleteAthlete(id: $id) {
+    id
+    message
+    success
+  }
+}

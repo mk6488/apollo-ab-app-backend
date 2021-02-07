@@ -1,0 +1,109 @@
+query ALL_COMMENTS {
+  allComments {
+    id
+    date
+    weekNumber
+    type
+    comment
+    athlete {
+      firstName
+    }
+    author {
+      username
+    }
+  }
+}
+
+query GET_COMMENT_BY_ID($id: ID!) {
+  getCommentById(id: $id) {
+    id
+    date
+    weekNumber
+    type
+    comment
+    athlete {
+      firstName
+    }
+    author {
+      username
+    }
+  }
+}
+
+query GET_COMMENT_WITH_PAGINATION {
+  getCommentsWithPagination(page: 1, limit: 5) {
+    comments {
+      id
+      date
+      weekNumber
+      type
+      comment
+      athlete {
+        firstName
+      }
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+query GET_MY_COMMENT_WITH_PAGINATION {
+  getMyCommentsWithPagination(page: 1, limit: 5) {
+    comments {
+      id
+      date
+      weekNumber
+      type
+      comment
+      athlete {
+        firstName
+      }
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+mutation CREATE_COMMENT($athleteId: ID!, $newComment: CommentInput!) {
+  createComment(athleteId: $athleteId, newComment: $newComment) {
+    id
+    date
+    weekNumber
+    type
+    comment
+  }
+}
+
+mutation UPDATE_COMMENT(
+  $id: ID!
+  $athleteId: ID!
+  $updatedComment: CommentInput!
+) {
+  updateComment(
+    id: $id
+    athleteId: $athleteId
+    updatedComment: $updatedComment
+  ) {
+    id
+    date
+    weekNumber
+    type
+    comment
+  }
+}
+
+mutation DELETE_COMMENT($id: ID!) {
+  deleteComment(id: $id) {
+    id
+    message
+    success
+  }
+}

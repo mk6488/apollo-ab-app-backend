@@ -1,0 +1,101 @@
+query ALL_TESTS {
+  allTests {
+    id
+    date
+    weekNumber
+    test
+    result
+    athlete {
+      firstName
+    }
+    author {
+      username
+    }
+  }
+}
+
+query GET_TEST_BY_ID($id: ID!) {
+  getTestById(id: $id) {
+    id
+    date
+    weekNumber
+    test
+    result
+    athlete {
+      firstName
+    }
+    author {
+      username
+    }
+  }
+}
+
+query GET_TEST_WITH_PAGINATION {
+  getTestsWithPagination(page: 1, limit: 5) {
+    tests {
+      id
+      date
+      weekNumber
+      test
+      result
+      athlete {
+        firstName
+      }
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+query GET_MY_TEST_WITH_PAGINATION {
+  getMyTestsWithPagination(page: 1, limit: 5) {
+    tests {
+      id
+      date
+      weekNumber
+      test
+      result
+      athlete {
+        firstName
+      }
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+mutation CREATE_TEST($athleteId: ID!, $newTest: TestInput!) {
+  createTest(athleteId: $athleteId, newTest: $newTest) {
+    id
+    date
+    weekNumber
+    test
+    result
+  }
+}
+
+mutation UPDATE_TEST($id: ID!, $athleteId: ID!, $updatedTest: TestInput!) {
+  updateTest(id: $id, athleteId: $athleteId, updatedTest: $updatedTest) {
+    id
+    date
+    weekNumber
+    test
+    result
+  }
+}
+
+mutation DELETE_TEST($id: ID!) {
+  deleteTest(id: $id) {
+    id
+    message
+    success
+  }
+}

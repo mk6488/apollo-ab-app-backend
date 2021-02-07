@@ -1,0 +1,133 @@
+query ALL_WELLNESS {
+  allWellness {
+    id
+    date
+    weekNumber
+    sleep
+    stress
+    fatigue
+    soreness
+    nutrition
+    average
+    athlete {
+      firstName
+    }
+    author {
+      username
+    }
+  }
+}
+
+query GET_WELLNESS_BY_ID($id: ID!) {
+  getWellnessById(id: $id) {
+    id
+    date
+    weekNumber
+    sleep
+    stress
+    fatigue
+    soreness
+    nutrition
+    average
+    athlete {
+      firstName
+    }
+    author {
+      username
+    }
+  }
+}
+
+query GET_WELLNESS_WITH_PAGINATION {
+  getWellnessWithPagination(page: 1, limit: 5) {
+    wellness {
+      id
+      date
+      weekNumber
+      sleep
+      stress
+      fatigue
+      soreness
+      nutrition
+      average
+      athlete {
+        firstName
+      }
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+query GET_MY_WELLNESS_WITH_PAGINATION {
+  getMyWellnessWithPagination(page: 1, limit: 5) {
+    wellness {
+      id
+      date
+      weekNumber
+      sleep
+      stress
+      fatigue
+      soreness
+      nutrition
+      average
+      athlete {
+        firstName
+      }
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+mutation CREATE_WELLNESS($athleteId: ID!, $newWellness: WellnessInput!) {
+  createWellness(athleteId: $athleteId, newWellness: $newWellness) {
+    id
+    date
+    weekNumber
+    sleep
+    stress
+    fatigue
+    soreness
+    nutrition
+    average
+  }
+}
+
+mutation UPDATE_WELLNESS(
+  $id: ID!
+  $athleteId: ID!
+  $updatedWellness: WellnessInput!
+) {
+  updateWellness(
+    id: $id
+    athleteId: $athleteId
+    updatedWellness: $updatedWellness
+  ) {
+    id
+    date
+    weekNumber
+    sleep
+    stress
+    fatigue
+    soreness
+    nutrition
+    average
+  }
+}
+
+mutation DELETE_WELLNESS($id: ID!) {
+  deleteWellness(id: $id) {
+    id
+    message
+    success
+  }
+}

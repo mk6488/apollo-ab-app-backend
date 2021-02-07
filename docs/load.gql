@@ -1,0 +1,113 @@
+query ALL_LOADS {
+  allLoads {
+    id
+    date
+    weekNumber
+    type
+    duration
+    rpe
+    load
+    athlete {
+      firstName
+    }
+    author {
+      username
+    }
+  }
+}
+
+query GET_LOAD_BY_ID($id: ID!) {
+  getLoadById(id: $id) {
+    id
+    date
+    weekNumber
+    type
+    duration
+    rpe
+    load
+    athlete {
+      firstName
+    }
+    author {
+      username
+    }
+  }
+}
+
+query GET_LOAD_WITH_PAGINATION {
+  getLoadsWithPagination(page: 1, limit: 5) {
+    loads {
+      id
+      date
+      weekNumber
+      type
+      duration
+      rpe
+      load
+      athlete {
+        firstName
+      }
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+query GET_MY_LOAD_WITH_PAGINATION {
+  getMyLoadsWithPagination(page: 1, limit: 5) {
+    loads {
+      id
+      date
+      weekNumber
+      type
+      duration
+      rpe
+      load
+      athlete {
+        firstName
+      }
+      author {
+        username
+      }
+    }
+    paginator {
+      count
+    }
+  }
+}
+
+mutation CREATE_LOAD($athleteId: ID!, $newLoad: LoadInput!) {
+  createLoad(athleteId: $athleteId, newLoad: $newLoad) {
+    id
+    date
+    weekNumber
+    type
+    duration
+    rpe
+    load
+  }
+}
+
+mutation UPDATE_LOAD($id: ID!, $athleteId: ID!, $updatedLoad: LoadInput!) {
+  updateLoad(id: $id, athleteId: $athleteId, updatedLoad: $updatedLoad) {
+    id
+    date
+    weekNumber
+    type
+    duration
+    rpe
+    load
+  }
+}
+
+mutation DELETE_LOAD($id: ID!) {
+  deleteLoad(id: $id) {
+    id
+    message
+    success
+  }
+}

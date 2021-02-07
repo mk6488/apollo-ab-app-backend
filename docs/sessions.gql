@@ -1,0 +1,113 @@
+query ALL_SESSIONS {
+  allSessions {
+    id
+    type
+    info
+    image
+    createdAt
+    updatedAt
+    author {
+      id
+      firstName
+      lastName
+      username
+      email
+      avatarImage
+    }
+  }
+}
+
+query GET_SESSIONS_WITH_PAGINATION($page: Int!, $limit: Int!) {
+  getSessionsWithPagination(page: $page, limit: $limit) {
+    sessions {
+      id
+      date
+      weekNumber
+      type
+      info
+      author {
+        group
+      }
+    }
+    paginator {
+      hasNextPage
+      hasPrevPage
+      next
+      prev
+      slNo
+      count
+      pageCount
+      perPage
+      currentPage
+    }
+  }
+}
+
+query GET_MY_SESSIONS_WITH_PAGINATION($page: Int!, $limit: Int!) {
+  getMySessionsWithPagination(page: $page, limit: $limit) {
+    sessions {
+      id
+      date
+      weekNumber
+      type
+      info
+    }
+    paginator {
+      hasNextPage
+      hasPrevPage
+      next
+      prev
+      slNo
+      count
+      pageCount
+      perPage
+      currentPage
+    }
+  }
+}
+
+query GET_SESSION_BY_ID($id: ID!) {
+  getSessionById(id: $id) {
+    id
+    date
+    weekNumber
+    type
+    info
+    image
+    createdAt
+    updatedAt
+    author {
+      group
+    }
+  }
+}
+
+mutation CREATE_SESSION($type: String!, $info: String!, $image: String) {
+  createSession(newSession: { type: $type, info: $info, image: $image }) {
+    id
+    type
+    info
+    image
+    createdAt
+    updatedAt
+  }
+}
+
+mutation UPDATE_SESSION($id: ID!, $updatedSession: SessionInput!) {
+  updateSession(id: $id, updatedSession: $updatedSession) {
+    id
+    type
+    info
+    image
+    updatedAt
+    createdAt
+  }
+}
+
+mutation DELETE_SESSION($id: ID!) {
+  deleteSession(id: $id) {
+    id
+    message
+    success
+  }
+}
