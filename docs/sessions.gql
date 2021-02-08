@@ -82,25 +82,48 @@ query GET_SESSION_BY_ID($id: ID!) {
   }
 }
 
-mutation CREATE_SESSION($type: String!, $info: String!, $image: String) {
-  createSession(newSession: { type: $type, info: $info, image: $image }) {
+mutation CREATE_SESSION(
+  $date: String!
+  $weekNumber: Int!
+  $type: String!
+  $info: String!
+  $image: String
+) {
+  createSession(
+    newSession: {
+      date: $date
+      weekNumber: $weekNumber
+      type: $type
+      info: $info
+      image: $image
+    }
+  ) {
     id
     type
     info
     image
-    createdAt
-    updatedAt
   }
 }
 
-mutation UPDATE_SESSION($id: ID!, $updatedSession: SessionInput!) {
-  updateSession(id: $id, updatedSession: $updatedSession) {
+mutation UPDATE_SESSION(
+  $id: ID!
+  $date: String!
+  $weekNumber: Int!
+  $type: String!
+  $info: String!
+  $image: String
+) {
+  updateSession(
+    id: $id
+    updatedSession: {
+      date: $date
+      weekNumber: $weekNumber
+      type: $type
+      info: $info
+      image: $image
+    }
+  ) {
     id
-    type
-    info
-    image
-    updatedAt
-    createdAt
   }
 }
 

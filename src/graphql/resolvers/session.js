@@ -40,7 +40,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: 'author',
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: sessionPaginatorLabels
 			}
 			let res = await Session.paginate({}, options)
@@ -56,7 +56,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: 'author',
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: sessionPaginatorLabels
 			}
 			let res = await Session.paginate({ author: user._id.toString() }, options)
@@ -84,7 +84,7 @@ export default {
 		 */
 		updateSession: async (_, { id, updatedSession }, { Session, user }) => {
 			try {
-				await NewSessionRules.validate(newSession, { abortEarly: false })
+				await NewSessionRules.validate(updatedSession, { abortEarly: false })
 				let res = await Session.findOneAndUpdate({ _id: id, author: user.id.toString() }, { ...updatedSession }, { new: true })
 				if (!res) {
 					throw new ApolloError("Unauthorized Request")

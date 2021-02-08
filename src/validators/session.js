@@ -12,9 +12,8 @@ const weekNumber = yup
 	.positive()
 
 const type = yup
-	.mixed()
+	.string()
 	.required()
-	.oneOf(sessionTypes)
 
 const info = yup
 	.string()
