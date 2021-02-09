@@ -17,6 +17,10 @@ const squad = yup
 	.required()
 	.oneOf(squads)
 
+const weight = yup
+	.number()
+	.positive()
+
 const current = yup
 	.boolean()
 	.required()
@@ -28,4 +32,4 @@ const doe = yup
 const dob = yup
 	.string()
 
-export const NewAthleteRules = yup.object().shape({ firstName, lastName, squad, current, doe, dob });
+export const NewAthleteRules = yup.object().shape({ firstName, lastName, squad, weight, current, doe, dob });

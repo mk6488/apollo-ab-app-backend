@@ -40,7 +40,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: 'author',
-				sort: { createdAt: -1 },
+				sort: { firstName: 1 },
 				customLabels: athletePaginatorLabels
 			}
 			let res = await Athlete.paginate({}, options)
@@ -56,7 +56,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: 'author',
-				sort: { createdAt: -1 },
+				sort: { firstName: 1 },
 				customLabels: athletePaginatorLabels
 			}
 			let res = await Athlete.paginate({ author: user._id.toString() }, options)
