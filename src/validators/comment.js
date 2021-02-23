@@ -1,7 +1,5 @@
 import * as yup from 'yup';
 
-import { commentTypes } from '../helpers'
-
 const date = yup
 	.string()
 	.required()
@@ -14,7 +12,6 @@ const weekNumber = yup
 const type = yup
 	.mixed()
 	.required()
-	.oneOf(commentTypes)
 
 const comment = yup
 	.string()

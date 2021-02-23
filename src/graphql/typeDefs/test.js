@@ -9,8 +9,8 @@ export default gql `
   }
 
   extend type Mutation {
-    createTest(newTest: TestInput!, athleteId: ID!): Test! @isAuth
-    updateTest(updatedTest: TestInput!, id: ID!, athleteId: ID!): Test! @isAuth
+    createTest(newTest: TestInput!): Test! @isAuth
+    updateTest(updatedTest: TestInput!, id: ID!): Test! @isAuth
     deleteTest(id: ID!): TestNotification! @isAuth
   }
 
@@ -19,6 +19,7 @@ export default gql `
     weekNumber: Int!
     test: String!
     result: String!
+    athlete: ID!
   }
 
   type Test {

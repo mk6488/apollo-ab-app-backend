@@ -9,8 +9,8 @@ export default gql `
   }
 
   extend type Mutation {
-    createLoad(newLoad: LoadInput!, athleteId: ID!): Load! @isAuth
-    updateLoad(updatedLoad: LoadInput!, id: ID!, athleteId: ID!): Load! @isAuth
+    createLoad(newLoad: LoadInput!): Load! @isAuth
+    updateLoad(updatedLoad: LoadInput!, id: ID!): Load! @isAuth
     deleteLoad(id: ID!): LoadNotification! @isAuth
   }
 
@@ -21,18 +21,19 @@ export default gql `
     duration: Int!
     rpe: Int!
     load: Int!
+    athlete: ID!
   }
 
   type Load {
-    id: ID
+    id: ID!
     date: String!
     weekNumber: Int!
     type: String!
     duration: Int!
     rpe: Int!
     load: Int!
-    createdAt: String
-    updatedAt: String
+    createdAt: String!
+    updatedAt: String!
     athlete: Athlete!
     author: User!
   }

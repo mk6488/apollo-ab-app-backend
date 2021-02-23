@@ -40,7 +40,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: ['author', 'athlete'],
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: loadPaginatorLabels
 			}
 			let res = await Load.paginate({}, options)
@@ -56,7 +56,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: ['author', 'athlete'],
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: loadPaginatorLabels
 			}
 			let res = await Load.paginate({ author: user._id.toString() }, options)
@@ -70,10 +70,10 @@ export default {
 		 * @Params newLoad{ type!, info!, image }
 		 * @Access Private
 		 */
-		createLoad: async (_, { athleteId, newLoad }, { Load, user }) => {
+		createLoad: async (_, { newLoad }, { Load, user }) => {
 			await NewLoadRules.validate(newLoad, { abortEarly: false })
-			let res = await Load.create({ ...newLoad, author: user._id, athlete: athleteId })
-			await res.populate('author').populate('athlete').execPopulate()
+			let res = await Load.create({ ...newLoad, author: user._id })
+			await res.populate('author').execPopulate()
 			return res
 		},
 
@@ -85,7 +85,7 @@ export default {
 		updateLoad: async (_, { id, updatedLoad }, { Load, user }) => {
 			try {
 				await NewLoadRules.validate(updatedLoad, { abortEarly: false })
-				let res = await Load.findOneAndUpdate({ _id: id, author: user.id.toString() }, { ...updatedLoad, athlete: athleteId }, { new: true })
+				let res = await Load.findOneAndUpdate({ _id: id, author: user.id.toString() }, { ...updatedLoad }, { new: true })
 				if (!res) {
 					throw new ApolloError("Unauthorized Request")
 				}

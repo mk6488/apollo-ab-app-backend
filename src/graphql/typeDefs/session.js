@@ -29,8 +29,8 @@ export default gql `
     type: String!
     info: String!
     image: String
-    createdAt: String
-    updatedAt: String
+    createdAt: String!
+    updatedAt: String!
     author: User!
   }
 

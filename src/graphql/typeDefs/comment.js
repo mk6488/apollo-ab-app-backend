@@ -9,8 +9,8 @@ export default gql `
   }
 
   extend type Mutation {
-    createComment(newComment: CommentInput!, athleteId: ID!): Comment! @isAuth
-    updateComment(updatedComment: CommentInput!, id: ID!, athleteId: ID!): Comment! @isAuth
+    createComment(newComment: CommentInput!): Comment! @isAuth
+    updateComment(updatedComment: CommentInput!, id: ID!): Comment! @isAuth
     deleteComment(id: ID!): CommentNotification! @isAuth
   }
 
@@ -19,6 +19,7 @@ export default gql `
     weekNumber: Int!
     type: String!
     comment: String!
+    athlete: ID!
   }
 
   type Comment {

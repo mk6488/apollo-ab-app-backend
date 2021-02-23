@@ -40,7 +40,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: ['author', 'athlete'],
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: testPaginatorLabels
 			}
 			let res = await Test.paginate({}, options)
@@ -56,7 +56,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: ['author', 'athlete'],
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: testPaginatorLabels
 			}
 			let res = await Test.paginate({ author: user._id.toString() }, options)
@@ -70,10 +70,10 @@ export default {
 		 * @Params newTest{ type!, info!, image }
 		 * @Access Private
 		 */
-		createTest: async (_, { athleteId, newTest }, { Test, user }) => {
+		createTest: async (_, { newTest }, { Test, user }) => {
 			await NewTestRules.validate(newTest, { abortEarly: false })
-			let res = await Test.create({ ...newTest, author: user._id, athlete: athleteId })
-			await res.populate('author').populate('athlete').execPopulate()
+			let res = await Test.create({ ...newTest, author: user._id })
+			await res.populate('author').execPopulate()
 			return res
 		},
 
@@ -85,7 +85,7 @@ export default {
 		updateTest: async (_, { id, updatedTest }, { Test, user }) => {
 			try {
 				await NewTestRules.validate(updatedTest, { abortEarly: false })
-				let res = await Test.findOneAndUpdate({ _id: id, author: user.id.toString() }, { ...updatedTest, athlete: athleteId }, { new: true })
+				let res = await Test.findOneAndUpdate({ _id: id, author: user.id.toString() }, { ...updatedTest }, { new: true })
 				if (!res) {
 					throw new ApolloError("Unauthorized Request")
 				}

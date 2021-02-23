@@ -1,7 +1,5 @@
 import * as yup from 'yup';
 
-import { sessionTypes } from '../helpers'
-
 const date = yup
 	.string()
 	.required()

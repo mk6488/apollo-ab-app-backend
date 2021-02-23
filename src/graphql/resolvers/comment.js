@@ -40,7 +40,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: ['author', 'athlete'],
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: commentPaginatorLabels
 			}
 			let res = await Comment.paginate({}, options)
@@ -56,7 +56,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: ['author', 'athlete'],
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: commentPaginatorLabels
 			}
 			let res = await Comment.paginate({ author: user._id.toString() }, options)
@@ -70,10 +70,10 @@ export default {
 		 * @Params newComment{ type!, info!, image }
 		 * @Access Private
 		 */
-		createComment: async (_, { athleteId, newComment }, { Comment, user }) => {
+		createComment: async (_, { newComment }, { Comment, user }) => {
 			await NewCommentRules.validate(newComment, { abortEarly: false })
-			let res = await Comment.create({ ...newComment, author: user._id, athlete: athleteId })
-			await res.populate('author').populate('athlete').execPopulate()
+			let res = await Comment.create({ ...newComment, author: user._id })
+			await res.populate('author').execPopulate()
 			return res
 		},
 
@@ -82,10 +82,10 @@ export default {
 		 * @Params updatedComment { type!, info!, image }
 		 * @Access Private
 		 */
-		updateComment: async (_, { id, updatedComment, athleteId }, { Comment, user }) => {
+		updateComment: async (_, { id, updatedComment }, { Comment, user }) => {
 			try {
 				await NewCommentRules.validate(updatedComment, { abortEarly: false })
-				let res = await Comment.findOneAndUpdate({ _id: id, author: user.id.toString() }, { ...updatedComment, athlete: athleteId }, { new: true })
+				let res = await Comment.findOneAndUpdate({ _id: id, author: user.id.toString() }, { ...updatedComment }, { new: true })
 				if (!res) {
 					throw new ApolloError("Unauthorized Request")
 				}

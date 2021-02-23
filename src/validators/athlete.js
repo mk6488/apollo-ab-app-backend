@@ -1,7 +1,5 @@
 import * as yup from 'yup';
 
-import { squads } from '../helpers'
-
 const firstName = yup
 	.string()
 	.required()
@@ -15,7 +13,6 @@ const lastName = yup
 const squad = yup
 	.mixed()
 	.required()
-	.oneOf(squads)
 
 const weight = yup
 	.number()

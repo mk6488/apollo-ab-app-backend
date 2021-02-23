@@ -1,6 +1,0 @@
-export const commentTypes = ['General', 'Incident', 'Medical', 'Training']
-export const groups = ['WJ13 - JW14', 'J13 - J14', 'WJ15 - WJ18', 'J15 - J18']
-export const loadTypes = ['Erg', 'Race', 'S&C', 'Water', 'X-Training']
-export const sessionTypes = ['Erg', 'S&C', 'Water']
-export const squads = ['J13', 'J14', 'J15', 'J16', 'J17', 'J18']
-export const tests = ['2K', '5K', '6K', 'Bleep']

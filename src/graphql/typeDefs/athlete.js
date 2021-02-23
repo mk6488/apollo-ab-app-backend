@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-express'
 export default gql `
   extend type Query {
     allAthletes: [Athlete!]!
+    allActiveAthletes: [Athlete!]!
     getAthletesWithPagination(page: Int, limit: Int): AthletePaginator!
     getMyAthletesWithPagination(page: Int, limit: Int): AthletePaginator! @isAuth
     getAthleteById(id: ID!): Athlete!

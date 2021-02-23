@@ -39,6 +39,8 @@ export default gql `
     email: String!
     group: String
     avatarImage: String
+    createdAt: String!
+    updatedAt: String!
   }
 
   type UserPaginator {

@@ -15,6 +15,15 @@ export default {
 		},
 
 		/**
+		 * @DESC to Get all Active Athletes
+		 * @Access Public
+		 */
+		allActiveAthletes: async (_, {}, { Athlete }) => {
+			let res = await Athlete.find({ current: true }).populate('author')
+			return res
+		},
+
+		/**
 		 * @DESC to Get single Athlete by ID
 		 * @Access Public
 		 */
@@ -63,6 +72,7 @@ export default {
 			return res
 		}
 	},
+
 
 	Mutation: {
 		/**

@@ -15,6 +15,22 @@ export default {
 		},
 
 		/**
+		 * @DESC to Get all Wellness for an Athlete
+		 * @Access Public
+		 */
+		allWellnessForAthlete: async (_, { id }, { Wellness }) => {
+			try {
+				let res = await Wellness.find({ athlete: id })
+				if (!res) {
+					throw new ApolloError("No Wellness for this Athlete")
+				}
+				return res
+			} catch (err) {
+				throw new ApolloError(err.message, 404)
+			}
+		},
+
+		/**
 		 * @DESC to Get single Wellness by ID
 		 * @Access Public
 		 */
@@ -40,7 +56,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: ['author', 'athlete'],
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: wellnessPaginatorLabels
 			}
 			let res = await Wellness.paginate({}, options)
@@ -56,7 +72,7 @@ export default {
 				page: page || 1,
 				limit: limit || 10,
 				populate: ['author', 'athlete'],
-				sort: { createdAt: -1 },
+				sort: { date: -1 },
 				customLabels: wellnessPaginatorLabels
 			}
 			let res = await Wellness.paginate({ author: user._id.toString() }, options)
@@ -70,10 +86,10 @@ export default {
 		 * @Params newWellness{ type!, info!, image }
 		 * @Access Private
 		 */
-		createWellness: async (_, { athleteId, newWellness }, { Wellness, user }) => {
+		createWellness: async (_, { newWellness }, { Wellness, user }) => {
 			await NewWellnessRules.validate(newWellness, { abortEarly: false })
-			let res = await Wellness.create({ ...newWellness, author: user._id, athlete: athleteId })
-			await res.populate('author').populate('athlete').execPopulate()
+			let res = await Wellness.create({ ...newWellness, author: user._id })
+			await res.populate('author').execPopulate()
 			return res
 		},
 
@@ -85,7 +101,7 @@ export default {
 		updateWellness: async (_, { id, updatedWellness }, { Wellness, user }) => {
 			try {
 				await NewWellnessRules.validate(updatedWellness, { abortEarly: false })
-				let res = await Wellness.findOneAndUpdate({ _id: id, author: user.id.toString() }, { ...updatedWellness, athlete: athleteId }, { new: true })
+				let res = await Wellness.findOneAndUpdate({ _id: id, author: user.id.toString() }, { ...updatedWellness }, { new: true })
 				if (!res) {
 					throw new ApolloError("Unauthorized Request")
 				}

@@ -1,7 +1,5 @@
 import * as yup from 'yup';
 
-import { tests } from '../helpers'
-
 const date = yup
 	.string()
 	.required()
@@ -14,7 +12,6 @@ const weekNumber = yup
 const test = yup
 	.mixed()
 	.required()
-	.oneOf(tests)
 
 const result = yup
 	.string()
