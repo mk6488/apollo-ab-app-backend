@@ -11,6 +11,7 @@ export default gql `
   extend type Mutation {
     createSession(newSession: SessionInput!): Session! @isAuth
     updateSession(updatedSession: SessionInput!, id: ID!): Session! @isAuth
+    toggleCancelled(cancelled: Boolean!, id: ID!): Session! @isAuth
     deleteSession(id: ID!): SessionNotification! @isAuth
   }
 
@@ -20,6 +21,7 @@ export default gql `
     type: String!
     info: String!
     image: String
+    cancelled: Boolean!
   }
 
   type Session {
@@ -29,6 +31,7 @@ export default gql `
     type: String!
     info: String!
     image: String
+    cancelled: Boolean!
     createdAt: String!
     updatedAt: String!
     author: User!

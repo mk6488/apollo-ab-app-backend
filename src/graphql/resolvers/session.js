@@ -96,6 +96,23 @@ export default {
 		},
 
 		/**
+		 * @DESC to Toggle Cancelled
+		 * @Params updatedSession { type!, info!, image }
+		 * @Access Private
+		 */
+		toggleCancelled: async (_, { id, cancelled }, { Session, user }) => {
+			try {
+				let res = await Session.findOneAndUpdate({ _id: id, author: user.id.toString() }, { cancelled }, { new: true })
+				if (!res) {
+					throw new ApolloError("Unauthorized Request")
+				}
+				return res
+			} catch (err) {
+				throw new ApolloError(err.message, 401)
+			}
+		},
+
+		/**
 		 * @DESC to Delete an Existing Session by ID
 		 * @Params id!
 		 * @Access Private

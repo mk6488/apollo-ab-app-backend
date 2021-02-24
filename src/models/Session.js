@@ -22,6 +22,10 @@ const SessionSchema = new Schema({
 		type: String,
 		required: false
 	},
+	cancelled: {
+		type: Boolean,
+		required: true
+	},
 	author: {
 		ref: 'users',
 		type: Schema.Types.ObjectId
