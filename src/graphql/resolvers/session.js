@@ -97,7 +97,7 @@ export default {
 
 		/**
 		 * @DESC to Toggle Cancelled
-		 * @Params updatedSession { type!, info!, image }
+		 * @Params toggleCancelled { type!, info!, image }
 		 * @Access Private
 		 */
 		toggleCancelled: async (_, { id, cancelled }, { Session, user }) => {

@@ -12,6 +12,7 @@ export default gql `
   extend type Mutation {
     createAthlete(newAthlete: AthleteInput!): Athlete! @isAuth
     updateAthlete(updatedAthlete: AthleteInput!, id: ID!): Athlete! @isAuth
+    toggleCurrent(current: Boolean!, id: ID!): Session! @isAuth
     deleteAthlete(id: ID!): AthleteNotification! @isAuth
   }
 

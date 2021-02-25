@@ -106,6 +106,23 @@ export default {
 		},
 
 		/**
+		 * @DESC to Toggle Current
+		 * @Params toggleCurrent { type!, info!, image }
+		 * @Access Private
+		 */
+		toggleCurrent: async (_, { id, current }, { Athlete, user }) => {
+			try {
+				let res = await Athlete.findOneAndUpdate({ _id: id, author: user.id.toString() }, { current }, { new: true })
+				if (!res) {
+					throw new ApolloError("Unauthorized Request")
+				}
+				return res
+			} catch (err) {
+				throw new ApolloError(err.message, 401)
+			}
+		},
+
+		/**
 		 * @DESC to Delete an Existing Athlete by ID
 		 * @Params id!
 		 * @Access Private
