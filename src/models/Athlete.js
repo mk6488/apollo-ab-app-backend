@@ -10,6 +10,10 @@ const AthleteSchema = new Schema({
 		type: String,
 		required: true
 	},
+	gender: {
+		type: String,
+		required: true
+	},
 	squad: {
 		type: String,
 		required: true
@@ -27,6 +31,10 @@ const AthleteSchema = new Schema({
 		required: false
 	},
 	dob: {
+		type: String,
+		required: false
+	},
+	avatar: {
 		type: String,
 		required: false
 	},

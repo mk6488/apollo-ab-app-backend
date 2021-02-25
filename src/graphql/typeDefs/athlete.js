@@ -18,22 +18,26 @@ export default gql `
   input  AthleteInput {
     firstName: String!
     lastName: String!
+    gender: String!
     squad: String!
     weight: Float
     current: Boolean!
     doe: String
     dob: String
+    avatar: String
   }
 
   type Athlete {
     id: ID
     firstName: String!
     lastName: String!
+    gender: String!
     squad: String!
     weight: Float
     current: Boolean!
     doe: String
     dob: String
+    avatar: String
     createdAt: String
     updatedAt: String
     author: User!

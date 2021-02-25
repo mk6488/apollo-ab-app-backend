@@ -10,6 +10,10 @@ const lastName = yup
 	.required()
 	.min(2)
 
+const gender = yup
+	.string()
+	.required()
+
 const squad = yup
 	.mixed()
 	.required()
@@ -29,4 +33,7 @@ const doe = yup
 const dob = yup
 	.string()
 
-export const NewAthleteRules = yup.object().shape({ firstName, lastName, squad, weight, current, doe, dob });
+const avatar = yup
+	.string()
+
+export const NewAthleteRules = yup.object().shape({ firstName, lastName, gender, squad, weight, current, doe, dob, avatar });
