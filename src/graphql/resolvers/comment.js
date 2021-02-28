@@ -15,6 +15,22 @@ export default {
 		},
 
 		/**
+		 * @DESC to Get all Comments for an Athlete
+		 * @Access Public
+		 */
+		allCommentsForAthlete: async (_, { id }, { Comment }) => {
+			try {
+				let res = await Comment.find({ athlete: id }).sort({ date: -1 })
+				if (!res) {
+					throw new ApolloError("No Comments found for this Athlete")
+				}
+				return res
+			} catch (err) {
+				throw new ApolloError(err.message, 404)
+			}
+		},
+
+		/**
 		 * @DESC to Get single Comment by ID
 		 * @Access Public
 		 */

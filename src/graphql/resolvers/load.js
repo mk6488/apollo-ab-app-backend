@@ -15,6 +15,22 @@ export default {
 		},
 
 		/**
+		 * @DESC to Get all Loads for an Athlete
+		 * @Access Public
+		 */
+		allLoadsForAthlete: async (_, { id }, { Load }) => {
+			try {
+				let res = await Load.find({ athlete: id })
+				if (!res) {
+					throw new ApolloError("No Loads found for this Athlete")
+				}
+				return res
+			} catch (err) {
+				throw new ApolloError(err.message, 404)
+			}
+		},
+
+		/**
 		 * @DESC to Get single Load by ID
 		 * @Access Public
 		 */

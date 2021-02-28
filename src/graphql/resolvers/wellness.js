@@ -22,7 +22,7 @@ export default {
 			try {
 				let res = await Wellness.find({ athlete: id })
 				if (!res) {
-					throw new ApolloError("No Wellness for this Athlete")
+					throw new ApolloError("No Wellness found for this Athlete")
 				}
 				return res
 			} catch (err) {

@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-express'
 export default gql `
   extend type Query {
     allComments: [Comment!]!
+    allCommentsForAthlete(id: ID!): [Comment!]!
     getCommentsWithPagination(page: Int, limit: Int): CommentPaginator!
     getMyCommentsWithPagination(page: Int, limit: Int): CommentPaginator! @isAuth
     getCommentById(id: ID!): Comment!

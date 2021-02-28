@@ -15,6 +15,22 @@ export default {
 		},
 
 		/**
+		 * @DESC to Get all Tests for an Athlete
+		 * @Access Public
+		 */
+		allTestsForAthlete: async (_, { id }, { Test }) => {
+			try {
+				let res = await Test.find({ athlete: id }).sort({ date: -1 })
+				if (!res) {
+					throw new ApolloError("No Tests found for this Athlete")
+				}
+				return res
+			} catch (err) {
+				throw new ApolloError(err.message, 404)
+			}
+		},
+
+		/**
 		 * @DESC to Get single Test by ID
 		 * @Access Public
 		 */
