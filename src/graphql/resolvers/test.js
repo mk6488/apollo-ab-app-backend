@@ -7,7 +7,7 @@ export default {
 	Query: {
 		/**
 		 * @DESC to Get all Tests
-		 * @Access Public
+		 * @Access Private
 		 */
 		allTests: async (_, {}, { Test }) => {
 			let res = await Test.find().populate('author').populate('athlete')
@@ -16,7 +16,7 @@ export default {
 
 		/**
 		 * @DESC to Get all Tests for an Athlete
-		 * @Access Public
+		 * @Access Private
 		 */
 		allTestsForAthlete: async (_, { id }, { Test }) => {
 			try {
@@ -32,7 +32,7 @@ export default {
 
 		/**
 		 * @DESC to Get single Test by ID
-		 * @Access Public
+		 * @Access Private
 		 */
 		getTestById: async (_, { id }, { Test }) => {
 			try {
@@ -49,7 +49,7 @@ export default {
 
 		/**
 		 * @DESC to Get Tests by Pagination variables
-		 * @Access Public
+		 * @Access Private
 		 */
 		getTestsWithPagination: async (_, { page, limit }, { Test }) => {
 			const options = {
@@ -65,7 +65,7 @@ export default {
 
 		/**
 		 * @DESC to Get My Tests by Pagination variables
-		 * @Access Public
+		 * @Access Private
 		 */
 		getMyTestsWithPagination: async (_, { page, limit }, { Test, user }) => {
 			const options = {

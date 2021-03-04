@@ -130,7 +130,6 @@ export default {
 				let token = await issueAuthToken(res)
 				return { token, user: res }
 			} catch (err) {
-				console.log(err)
 				throw new ApolloError(err.message)
 			}
 		}
