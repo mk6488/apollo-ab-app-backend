@@ -48,6 +48,22 @@ export default {
 		},
 
 		/**
+		 * @DESC to Get Future Sessions by Pagination variables
+		 * @Access Public
+		 */
+		getFutureSessionsWithPagination: async (_, { page, limit }, { Session }) => {
+			const options = {
+				page: page || 1,
+				limit: limit || 10,
+				populate: 'author',
+				sort: { date: 1 },
+				customLabels: sessionPaginatorLabels
+			}
+			let res = Session.paginate({ date: { $gte: new Date().toISOString() } }, options)
+			return res
+		},
+
+		/**
 		 * @DESC to Get My Sessions by Pagination variables
 		 * @Access Public
 		 */

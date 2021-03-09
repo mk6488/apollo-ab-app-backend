@@ -4,7 +4,7 @@ import { pick } from 'lodash'
 import { SECRET } from '../config'
 
 export const issueAuthToken = async (user) => {
-	let token = await sign(user, SECRET, { expiresIn: 60 * 60 * 24 })
+	let token = await sign(user, SECRET, { expiresIn: 60 * 60 * 24 * 7 })
 	return `Bearer ${token}`
 }
 

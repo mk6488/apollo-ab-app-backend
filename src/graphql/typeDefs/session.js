@@ -4,6 +4,7 @@ export default gql `
   extend type Query {
     allSessions: [Session!]!
     getSessionsWithPagination(page: Int, limit: Int): SessionPaginator!
+    getFutureSessionsWithPagination(page: Int, limit: Int): SessionPaginator!
     getMySessionsWithPagination(page: Int, limit: Int): SessionPaginator! @isAuth
     getSessionById(id: ID!): Session!
   }
